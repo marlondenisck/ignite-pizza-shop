@@ -1,8 +1,29 @@
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const signInSchema = z.object({
+  email: z.string().email('Email inválido'),
+})
+
+type SignInFormData = z.infer<typeof signInSchema>
+
 export function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SignInFormData>()
+
+  async function handleSignIn(data: SignInFormData) {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    console.log('Sign in data:', data)
+  }
+
   return (
     <>
       <title>Login | Pizza Shop</title>
@@ -14,12 +35,16 @@ export function SignIn() {
               Acompanhe suas vendas pelo painel do parceiro
             </p>
           </div>
-          <form className='space-y-4'>
+          <form className='space-y-4' onSubmit={handleSubmit(handleSignIn)}>
             <div className='space-y-2'>
               <Label htmlFor='email'>Seu e-mail</Label>
-              <Input id='email' type='email' />
+              <Input id='email' type='email' {...register('email')} />
             </div>
-            <Button className='w-full' type='submit'>
+            <Button
+              disabled={isSubmitting}
+              className='w-full cursor-pointer disabled:cursor-not-allowed'
+              type='submit'
+            >
               Acessar Painel
             </Button>
           </form>
