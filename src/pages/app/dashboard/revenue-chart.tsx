@@ -41,15 +41,14 @@ export function RevenueChart() {
     <Card className='col-span-6'>
       <CardHeader className='flex-row items-center justify-between pb-8'>
         <div className='space-y-1'>
-          <CardTitle className='text-base font-medium'>Receita no período</CardTitle>
-          <CardDescription>Receita diária no período</CardDescription>
+          <CardTitle className='text-base font-medium'>Receita diária no período</CardTitle>
+          <CardDescription>Período máximo: 7 dias</CardDescription>
         </div>
 
         <div className='flex items-center gap-3'>
           <Label>Período</Label>
           <DateRangePicker maxDays={7} date={dateRange} onDateChange={setDateRange} />
         </div>
-        <span className='text-muted-foreground mt-1 text-xs'>Período máximo: 7 dias</span>
       </CardHeader>
       <CardContent>
         {isLoading && (
