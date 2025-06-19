@@ -1,6 +1,7 @@
 import { Label } from '@radix-ui/react-label'
 import { useQuery } from '@tanstack/react-query'
 import { subDays } from 'date-fns'
+import { Loader2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import type { DateRange } from 'react-day-picker'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
@@ -53,6 +54,7 @@ export function RevenueChart() {
       <CardContent>
         {isLoading && (
           <div className='flex h-[240px] items-center justify-center'>
+            <Loader2 className='text-muted-foreground h-8 w-8 animate-spin' />
             <p className='text-muted-foreground'>Carregando dados...</p>
           </div>
         )}
