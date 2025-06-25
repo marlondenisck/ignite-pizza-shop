@@ -15,7 +15,10 @@ export function Error() {
         Um erro aconteceu na aplicação, por favor tente novamente mais tarde.
       </p>
       {(env.MODE === 'test' || env.MODE === 'development') && (
-        <pre>pi{error?.message || JSON.stringify(error)}</pre>
+        <div>
+          <pre>{error?.message || JSON.stringify(error)}</pre>
+          <pre>Stack: {error?.stack}</pre>
+        </div>
       )}
       <p className='text-accent-foreground'>
         Voltar para o{' '}

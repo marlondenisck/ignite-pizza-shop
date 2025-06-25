@@ -27,6 +27,9 @@ export function RevenueChart() {
   })
 
   const chartData = useMemo(() => {
+    if (!dailyRevenueInPeriod) {
+      return []
+    }
     return dailyRevenueInPeriod?.map((chartItem) => {
       return {
         date: chartItem.date,
