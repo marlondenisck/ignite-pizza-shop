@@ -14,15 +14,16 @@ if (env.VITE_ENABLE_API_DELAY) {
     return config
   })
 }
-
-api.interceptors.response.use(
-  (response) => {
-    return response
-  },
-  (error) => {
-    if (error.response.status === 401) {
-      window.location.href = '/login'
-    }
-    return Promise.reject(error)
-  },
-)
+if (env.MODE === 'development') {
+  api.interceptors.response.use(
+    (response) => {
+      return response
+    },
+    (error) => {
+      if (error.response.status === 401) {
+        window.location.href = '/login'
+      }
+      return Promise.reject(error)
+    },
+  )
+}

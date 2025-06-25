@@ -14,7 +14,9 @@ export function Error() {
       <p className='text-accent-foreground'>
         Um erro aconteceu na aplicação, por favor tente novamente mais tarde.
       </p>
-      {env.VITE_DEV_MODE && <pre>{error?.message || JSON.stringify(error)}</pre>}
+      {(env.MODE === 'test' || env.MODE === 'development') && (
+        <pre>pi{error?.message || JSON.stringify(error)}</pre>
+      )}
       <p className='text-accent-foreground'>
         Voltar para o{' '}
         <Link to='/' className='text-sky-600 dark:text-sky-400'>
