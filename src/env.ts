@@ -4,6 +4,7 @@ const envSchema = z.object({
   VITE_API_URL: z.string().url(),
   VITE_ENABLE_API_DELAY: z.string().transform((value) => value === 'true'),
   VITE_DEV_MODE: z.string().transform((value) => value === 'true'),
+  MODE: z.enum(['development', 'production', 'test']),
 })
 
 export const env = envSchema.parse(import.meta.env)
